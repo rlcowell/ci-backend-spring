@@ -16,7 +16,7 @@ import java.util.List;
  * Created by oleks on 11/28/2016.
  */
 @RestController()
-@CrossOrigin(origins = {"http://localhost:9095", "http://54.91.246.118:9095", "http://localhost", "http://54.91.246.118"})
+@CrossOrigin(origins = {"*"})
 public class HackController {
   @Autowired
   MetricsRepository metricsRepository;
