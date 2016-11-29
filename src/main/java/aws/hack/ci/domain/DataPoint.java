@@ -11,7 +11,6 @@ import javax.persistence.Id;
 @Entity
 public class DataPoint {
 
-  @Id
   @Column(name = "country", nullable = false)
   public String country;
 
@@ -19,7 +18,6 @@ public class DataPoint {
   @Column(name = "landscape", nullable = false)
   public String landscape;
 
-  @Id
   @Column(name = "landscape_desc", nullable = false)
   public String landscapeDesc;
 
