@@ -26,23 +26,22 @@ public class MetricsRepository {
 
 
   public List<DataPoint> getSolrMetric(String country, String metric, String soilType) {
-    Query query = entityManger.createNativeQuery(
-      "SELECT s.country,\n" +
-        "       s.landscape_no AS landscape,\n" +
-        "       l.description AS landscape_desc,\n" +
-        "       AVG(" + metric + ") AS value\n" +
-        "FROM public.eplotsoils_processed AS s\n" +
-        "LEFT JOIN public.country AS c ON c.country = s.country\n" +
-        "LEFT JOIN public.landscape AS l ON l.country = s.country AND l.landscape_no = s.landscape_no\n" +
-        "WHERE soil_depth_class = :soilType\n" +
-        "  AND s.country = :country \n" +
-        "GROUP BY s.country, s.landscape_no, l.description\n" +
-        "ORDER BY landscape_desc\n",
-      DataPoint.class);
+    String text =  "SELECT s.country,\n" +
+      "       s.landscape_no AS landscape,\n" +
+      "       l.description AS landscape_desc,\n" +
+      "       AVG(" + metric + ") AS value\n" +
+      "FROM public.eplotsoils_processed AS s\n" +
+      "LEFT JOIN public.country AS c ON c.country = s.country\n" +
+      "LEFT JOIN public.landscape AS l ON l.country = s.country AND l.landscape_no = s.landscape_no\n" +
+      "WHERE soil_depth_class = :soilType\n" +
+      "  AND s.country = :country \n" +
+      "GROUP BY s.country, s.landscape_no, l.description\n" +
+      "ORDER BY landscape_desc\n"
+    Query query = entityManger.createNativeQuery(text, DataPoint.class);
     query.setParameter("country", country);
     query.setParameter("soilType", soilType);
 
-    logger.info("query", query);
+    logger.info("query", text);
     return query.getResultList();
   }
 }
