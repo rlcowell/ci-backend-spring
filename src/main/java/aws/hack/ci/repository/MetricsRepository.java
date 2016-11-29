@@ -36,7 +36,7 @@ public class MetricsRepository {
       "WHERE soil_depth_class = :soilType\n" +
       "  AND s.country = :country \n" +
       "GROUP BY s.country, s.landscape_no, l.description\n" +
-      "ORDER BY landscape_desc\n"
+      "ORDER BY landscape_desc\n";
     Query query = entityManger.createNativeQuery(text, DataPoint.class);
     query.setParameter("country", country);
     query.setParameter("soilType", soilType);
