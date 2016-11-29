@@ -11,10 +11,10 @@ import javax.persistence.Id;
 @Entity
 public class DataPoint {
 
-  @Id
   @Column(name = "country", nullable = false)
   public String country;
 
+  @Id
   @Column(name = "landscape", nullable = false)
   public String landscape;
 
@@ -61,6 +61,7 @@ public class DataPoint {
     return "DataPoint{" +
       "country=" + country +
       ", landscape='" + landscape + '\'' +
+      ", landscape_desc='" + landscapeDesc + '\'' +
       ", value='" + value + '\'' +
       '}';
   }
