@@ -23,18 +23,20 @@ public class MetricsRepository {
   private EntityManager entityManger;
 
 
-  public List<DataPoint> getMetric() {
+  public List<DataPoint> getSolrMetric(String country, String metric, String soilType) {
     Query query = entityManger.createNativeQuery(
       "SELECT s.country,\n" +
         "       s.landscape_no AS landscape,\n" +
-        "       AVG(acidified_carbon) AS value\n" +
+        "       AVG(" + metric + ") AS value\n" +
         "FROM public.eplotsoils_processed AS s\n" +
         "LEFT JOIN public.country AS c ON c.country = s.country\n" +
         "LEFT JOIN public.landscape AS l ON l.country = s.country AND l.landscape_no = s.landscape_no\n" +
-        "WHERE soil_depth_class = 'top'\n" +
+        "WHERE soil_depth_class = :soilType\n" +
+        "  AND s.country = :country \n" +
         "GROUP BY s.country, s.landscape_no\n",
       DataPoint.class);
-
+query.setParameter("country", country);
+    query.setParameter("soilType", soilType);
     return query.getResultList();
   }
 }

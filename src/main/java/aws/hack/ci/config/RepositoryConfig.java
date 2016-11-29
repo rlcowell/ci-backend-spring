@@ -43,7 +43,7 @@ public class RepositoryConfig {
   public DriverManagerDataSource dataSource() {
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
     dataSource.setDriverClassName("org.postgresql.Driver");
-    dataSource.setUrl("todo");
+    dataSource.setUrl("jdbc:postgresql://ci-hack.cxiiuajiqdrq.us-east-1.rds.amazonaws.com:5432/vitalsigns_staging");
     dataSource.setUsername("postgres");
     dataSource.setPassword("postgres");
     return dataSource;

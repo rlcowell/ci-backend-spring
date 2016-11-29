@@ -20,9 +20,9 @@ public class HackController {
   @Autowired
   MetricsRepository metricsRepository;
 
-    @RequestMapping("/getByCountry")
-  public List<DataPoint> getByCountry(@RequestParam String country) {
-    return metricsRepository.getMetric();
+    @RequestMapping("/getSoilMetricByCountry")
+  public List<DataPoint> getByCountry(@RequestParam String country, @RequestParam String metric, @RequestParam String soilType) {
+    return metricsRepository.getSolrMetric(country, metric, soilType);
   }
 
   @RequestMapping("/getByLandscape")
