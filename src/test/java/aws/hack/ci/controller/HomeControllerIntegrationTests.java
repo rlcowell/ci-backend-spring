@@ -18,13 +18,13 @@ import org.springframework.web.client.RestTemplate;
 @WebIntegrationTest("server.port:9000")
 public class HomeControllerIntegrationTests {
 
-    RestTemplate restTemplate = new TestRestTemplate();
+  RestTemplate restTemplate = new TestRestTemplate();
 
-    @Test
-    public void shouldAdd_AppUser_ToDb(){
-        ResponseEntity<AppUser> responseEntity = restTemplate.postForEntity("http://localhost:9000/user/Abderrazak BOUADMA", MockHttpServletRequest.DEFAULT_PROTOCOL, AppUser.class);
-        final AppUser appUser = responseEntity.getBody();
-        Assertions.assertThat(appUser).isNotNull();
-        Assertions.assertThat(appUser.getUsername()).isNotNull().isEqualTo("Abderrazak BOUADMA");
-    }
+  @Test
+  public void shouldAdd_AppUser_ToDb() {
+    ResponseEntity<AppUser> responseEntity = restTemplate.postForEntity("http://localhost:9000/user/Abderrazak BOUADMA", MockHttpServletRequest.DEFAULT_PROTOCOL, AppUser.class);
+    final AppUser appUser = responseEntity.getBody();
+    Assertions.assertThat(appUser).isNotNull();
+    Assertions.assertThat(appUser.getUsername()).isNotNull().isEqualTo("Abderrazak BOUADMA");
+  }
 }

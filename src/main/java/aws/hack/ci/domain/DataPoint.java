@@ -18,6 +18,9 @@ public class DataPoint {
   @Column(name = "landscape", nullable = false)
   public String landscape;
 
+  @Column(name = "landscape_desc", nullable = false)
+  public String landscapeDesc;
+
   @Column(name = "value", nullable = false)
   public double value;
 
@@ -43,6 +46,14 @@ public class DataPoint {
 
   public void setValue(double value) {
     this.value = value;
+  }
+
+  public String getLandscapeDesc() {
+    return landscapeDesc;
+  }
+
+  public void setLandscapeDesc(String landscapeDesc) {
+    this.landscapeDesc = landscapeDesc;
   }
 
   @Override

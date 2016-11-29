@@ -2,8 +2,6 @@ package aws.hack.ci.repository;
 
 
 import aws.hack.ci.domain.DataPoint;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,15 +25,17 @@ public class MetricsRepository {
     Query query = entityManger.createNativeQuery(
       "SELECT s.country,\n" +
         "       s.landscape_no AS landscape,\n" +
+        "       l.description AS landscape_desc,\n" +
         "       AVG(" + metric + ") AS value\n" +
         "FROM public.eplotsoils_processed AS s\n" +
         "LEFT JOIN public.country AS c ON c.country = s.country\n" +
         "LEFT JOIN public.landscape AS l ON l.country = s.country AND l.landscape_no = s.landscape_no\n" +
         "WHERE soil_depth_class = :soilType\n" +
         "  AND s.country = :country \n" +
-        "GROUP BY s.country, s.landscape_no\n",
+        "GROUP BY s.country, s.landscape_no, l.description\n" +
+        "ORDER BY landscape_desc\n",
       DataPoint.class);
-query.setParameter("country", country);
+    query.setParameter("country", country);
     query.setParameter("soilType", soilType);
     return query.getResultList();
   }

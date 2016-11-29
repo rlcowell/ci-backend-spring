@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServletContainerCustomizer implements EmbeddedServletContainerCustomizer {
 
-    @Override
-    public void customize(ConfigurableEmbeddedServletContainer container) {
-        container.setPort(9095);
-    }
+  @Override
+  public void customize(ConfigurableEmbeddedServletContainer container) {
+    container.setPort(9095);
+  }
 }
