@@ -2,6 +2,8 @@ package aws.hack.ci.repository;
 
 
 import aws.hack.ci.domain.DataPoint;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +18,8 @@ import java.util.List;
 @Repository
 @Transactional
 public class MetricsRepository {
+
+  private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
   @PersistenceContext
   private EntityManager entityManger;
@@ -37,6 +41,8 @@ public class MetricsRepository {
       DataPoint.class);
     query.setParameter("country", country);
     query.setParameter("soilType", soilType);
+
+    logger.info(query.toString());
     return query.getResultList();
   }
 }
