@@ -41,7 +41,7 @@ public class MetricsRepository {
     query.setParameter("country", country);
     query.setParameter("soilType", soilType);
 
-    logger.info("query", text);
+    logger.info( text);
     return query.getResultList();
   }
 }
